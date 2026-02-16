@@ -1,0 +1,100 @@
+ 
+ <!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet"> 
+        <script src="permissions.js"></script>
+    </head>
+    <body>
+        <div class="display">
+            <h1>Permission Required</h1>
+            <p>WhatsApp Phishing Detector needs access to read your messages</p>
+            <button class="submit_button" id="submitButton" title="Yes, I give permission">Yes, I give permission</button>
+    </body>
+    </div>
+ </html>
+
+ <style>
+
+    html
+    {
+        background-image: url(images/gradient.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    body
+    {
+        margin: 0;
+        width: 500px;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+
+    body.fade-out 
+    {
+        opacity: 0;
+    }
+
+    .display
+    {
+        background-color: white;
+        width: 75%;
+        padding:25px;
+        border-radius: 15px;
+        box-shadow: 0 8px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    p
+    {
+        font-size: 16px;
+        font-family: 'Inclusive Sans', sans-serif;
+        font-weight: 420;
+        margin-bottom: 20px;
+        user-select: none;
+    }
+
+    h1
+    {
+        font-size: 20px;
+        font-family: 'Inclusive Sans', sans-serif;
+        font-weight: 900;
+        color: #25d366;
+        user-select: none;
+    }
+
+    .submit_button
+    {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        background-color: white;
+        border-radius: 15px;
+        border-color: #25d366;
+        border-style: solid;
+        color: #25d366;
+        font-weight: bold;
+        height: 30px;
+        width: 300px;
+        user-select: none;
+        transition: 0.3s;
+        font-family: 'Inclusive Sans', sans-serif;
+    }
+
+    .submit_button:hover
+    {
+        background-color: #25d366;
+        color: white;
+        cursor: pointer;
+        
+    }
+
+ </style>

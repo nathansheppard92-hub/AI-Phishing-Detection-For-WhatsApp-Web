@@ -1,0 +1,12 @@
+{
+  "name": "WhatsApp Phishing Detector",
+  "description": "AI phishing detector for WhatsApp Web",
+  "version": "1.0",
+  "permissions": ["clipboardRead", "clipboardWrite"],
+  "host_permissions": ["http://127.0.0.1:5000/*"],
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "permissions.html",
+    "default_icon": "images/whatsapp_logo_magnifying_glass.png" 
+  }
+}
