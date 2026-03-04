@@ -6,6 +6,7 @@ from main import predictMessage, explainMessage, getSuspiciousWords
 app = Flask(__name__)
 CORS(app)
 
+#post request gathering responses to entered message
 @app.route("/detect", methods=["POST"])
 def scan():
     message = request.json["message"]

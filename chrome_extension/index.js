@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const explanationText = document.getElementById("explanationText");
 
     const breakLine = document.getElementById("breakLine");
+
+    const errorMessage = document.getElementById("errorMessage");
 })
 
     let i = 0;
@@ -62,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
 //detect phishing function
 async function detectFunction() 
 {
+    //resets error message
+    errorMessage.classList.remove("show");
+
     //takes inputted message
     const message = inputBox.value;
 
@@ -118,9 +123,38 @@ async function detectFunction()
     }
 }
 
-function scanFunction() 
+//scans whatsapp to find users most recent message in the chat they have selected
+async function scanFunction() 
 {
-    inputBox.value = "Scan button pressed";
+    //resets error message
+    errorMessage.classList.remove("show");
+
+    //connects to whatsapp web
+    const [tab] = await chrome.tabs.query({
+        url: "https://web.whatsapp.com/*"
+    });
+
+    //if tab is not open, gives error message
+    if (!tab) {
+        errorMessage.classList.add("show");
+        return;
+    }
+
+    //gets recent message and outputs to input box
+    chrome.tabs.sendMessage(tab.id, { action: "getMessage" }, (response) => {
+
+        //if message is recieved, paste it into input box
+        if (response && response.message) 
+        {
+            inputBox.value = response.message;
+        }
+
+        //if not, show error message
+        else 
+        {
+            errorMessage.classList.add("show");
+        }
+    });
 }
 
 async function pasteFunction()

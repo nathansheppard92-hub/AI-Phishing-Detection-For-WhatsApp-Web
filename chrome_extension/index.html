@@ -28,6 +28,7 @@
             <button class="scan_button" title="Scan WhatsApp Web to find a message" id="scanButton" >Scan WhatsApp</button>
             <img src="images/clipboard.png" class="clipboard_button" title="Paste" id="pasteButton" ></img>
         </div>
+        <p class="error_message" id="errorMessage">Error: Make sure WhatsApp is open and a chat is selected</p>
         <p   class="prediction_text" id="predictionText"></p>
         <hr class="break_line" id="breakLine">
         <p  class="explanation_text" id="explanationText"></p>
@@ -125,7 +126,7 @@
 
     .buttons
     {
-        margin-top: 20px;
+        margin-top: 10px;
         display: flex;
     }
 
@@ -194,7 +195,7 @@
         font-size: 20px;
         margin-left: 55px;
         margin-right: 55px;
-        margin-top: 40px;
+        margin-top: 15px;
         font-family: 'Inclusive Sans', sans-serif;
         user-select: none;
         font-weight: 600;
@@ -210,6 +211,27 @@
         font-family: 'Inclusive Sans', sans-serif;
         user-select: none;
         font-weight: 420;
+    }
+
+    .error_message
+    {
+        font-weight: 600;
+        font-size: 14px;
+        margin-left: 55px;
+        margin-right: 55px;
+        margin-top:15px;
+        font-family: 'Inclusive Sans', sans-serif;
+        user-select: none;
+        font-weight: 420;
+        color: red;
+
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .error_message.show 
+    {
+        opacity: 1;
     }
 
     .break_line
