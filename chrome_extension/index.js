@@ -68,7 +68,7 @@ async function detectFunction()
     errorMessage.classList.remove("show");
 
     //takes inputted message
-    const message = inputBox.innerHTML;
+    const message = inputBox.innerText;
 
     //break line animation
     breakLine.classList.add("fade-in");
@@ -152,7 +152,7 @@ async function scanFunction()
         //if message is recieved, paste it into input box
         if (response && response.message) 
         {
-            inputBox.value = response.message;
+            inputBox.innerText = response.message;
         }
 
         //if not, show error message

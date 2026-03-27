@@ -3,21 +3,27 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "getMessage") {
 
-        //collects all selectable messages from whatsapp
-        const messages = document.querySelectorAll('[data-testid="selectable-text"]');
+        //selects all content from most recent message going in or out
+        const messages = document.querySelectorAll('div.message-in, div.message-out');
 
-        //selects most recent message in the selected chat
+        //error checking
         if (messages.length > 0) 
         {
-            const recentMessage = messages[messages.length - 1].innerText;
-            sendResponse({ message: recentMessage });
-        } 
+            //detects all elements of a message
+            //WhatsApp breaks down a message if containing hyperlinks or phone numbers
+            const lastMessage = messages[messages.length - 1];
+            const textElement = lastMessage.querySelector('[data-testid="selectable-text"]');
+            let text = textElement ? textElement.innerText : "";
 
-        //if no messages found, return empty variable, which is detected in index.js to show error
+            //returns detected message
+            sendResponse({ message: text });
+        } 
         else 
         {
+            //returns empty if nothing found
             sendResponse({ message: "" });
         }
+
         return true;
     }
 });
