@@ -45,7 +45,7 @@ vectoriser = TfidfVectorizer(
 xTrainVector = vectoriser.fit_transform(xTrain)
 xTestVector = vectoriser.transform(xTest)
 
-#svm training
+#svm training 
 svm = LinearSVC(class_weight="balanced")
 svm.fit(xTrainVector, yTrain)
 
