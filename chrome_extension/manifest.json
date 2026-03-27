@@ -1,5 +1,5 @@
 {
-  "name": "WhatsApp Phishing Detector",
+  "name": "WhatsApp Scam Detector",
   "description": "AI phishing detector for WhatsApp Web",
   "version": "1.0",
   "permissions": ["clipboardRead", "clipboardWrite", "activeTab", "scripting"],

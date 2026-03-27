@@ -11,12 +11,16 @@ CORS(app)
 def scan():
     message = request.json["message"]
 
+    suspicious = getSuspiciousWords(message)
+    words = [word for word, weight in suspicious]
+    
     prediction = predictMessage(message)
     explanation = explainMessage(message, prediction)
 
     return jsonify({
         "prediction": prediction,
-        "explanation": explanation
+        "explanation": explanation,
+        "suspiciousWords": words
     })
 
 if __name__ == "__main__":

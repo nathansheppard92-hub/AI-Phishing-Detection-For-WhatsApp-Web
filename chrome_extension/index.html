@@ -8,23 +8,15 @@
         <script src="index.js"></script>
     </head>
   <body>
-    <div class="options_background">
-        <div class="dropdown">
-            <img class="options" id="optionsButton" src="images/options.png" title="Options"></img>
 
-            <div id="dropdownMenu" class="dropdown_menu">
-            
-            </div>
-        </div>
-    </div>
     <div class="header">
         <img src="images/whatsapp_logo.png" title="WhatsApp" class="whatsapp_logo">
-        <h1>WhatsApp Phishing Detector</h1>
+        <h1>WhatsApp Scam Detector</h1>
     </div>
     <div class="mainbody">
-        <textarea class="input_box" id="inputBox" spellcheck="false" placeholder="Type or click scan to find a message automatically..."></textarea>
+        <div class="input_box" id="inputBox" contenteditable="true" spellcheck="false" placeholder="Type or click scan to find a message automatically..."></div>
         <div class="buttons">
-            <button class="detect_button" title="Use AI to detect phishing in this message" id="detectButton" >Detect phishing</button>
+            <button class="detect_button" title="Use AI to detect a phishing scam in this message" id="detectButton" >Detect scam</button>
             <button class="scan_button" title="Scan WhatsApp Web to find a message" id="scanButton" >Scan WhatsApp</button>
             <img src="images/clipboard.png" class="clipboard_button" title="Paste" id="pasteButton" ></img>
         </div>
@@ -38,6 +30,12 @@
 
 
 <style>
+
+    .highlight 
+    {
+        background-color: rgba(255, 255, 0, 0.4);
+        transition: 0.3s;
+    }
 
     html
     {
@@ -75,7 +73,7 @@
 
     .header
     {
-        padding-top: 1px;
+        padding-top: 18px;
         padding-left:16px;
         padding-bottom:18px;
         background-color: white;
@@ -104,19 +102,28 @@
         margin:0;
     }
 
-    .input_box
-    {
+    .input_box {
         display: block;
         margin: 30px auto 0 auto;
         height: 200px;
         width: 85%;
-        resize: none;
         font-family: 'Inclusive Sans', sans-serif;
         font-size: 15px;
         padding: 20px;
         box-sizing: border-box;
         border-radius: 15px;
         border: none;
+        outline: none;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+        background-color: white;
+    }
+
+    .input_box:empty:before 
+    {
+        content:attr(placeholder);
+        color:gray
     }
 
     .input_box:focus 
@@ -126,7 +133,7 @@
 
     .buttons
     {
-        margin-top: 10px;
+        margin-top: 20px;
         display: flex;
     }
 

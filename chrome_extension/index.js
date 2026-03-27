@@ -68,7 +68,7 @@ async function detectFunction()
     errorMessage.classList.remove("show");
 
     //takes inputted message
-    const message = inputBox.value;
+    const message = inputBox.innerHTML;
 
     //break line animation
     breakLine.classList.add("fade-in");
@@ -97,6 +97,10 @@ async function detectFunction()
         {
             predictionText.style.color = "red";
             prediction = "This message is likely spam";
+
+            //only if message is deemed spam, the message will be highlighted using suspicious weighted words found by SVM
+            const highlightedMessage = highlightMessage(message, data.suspiciousWords);
+            inputBox.innerHTML = highlightedMessage;
         } 
 
         else 
@@ -111,6 +115,8 @@ async function detectFunction()
         //plays text fade in animations
         predictionAnimation();
         explanationAnimation();
+
+        
 
     //if error
     } catch (err) {
@@ -157,10 +163,32 @@ async function scanFunction()
     });
 }
 
+//pastes straight from clipboard
 async function pasteFunction()
 {
-    const text = await navigator.clipboard.readText()
-    inputBox.value = text;
+    const clipboard = await navigator.clipboard.readText()
+    inputBox.innerHTML = clipboard;
 }
+
+//highlights suspicious parts of a message if deemed spam
+function highlightMessage(message, suspiciousWords)
+{
+    let highlightedMessage = message;
+
+        suspiciousWords.forEach(word => {
+        const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+        const regex = new RegExp(`(${escaped})`, "gi");
+
+        //highlights it using CSS tag in index.html
+        highlightedMessage = highlightedMessage.replace(
+            regex,
+            '<span class="highlight">$1</span>'
+        );
+    });
+
+    return highlightedMessage;
+}
+
 
 

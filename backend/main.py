@@ -96,7 +96,7 @@ def explainMessage(messageInput, prediction):
 
     #displays suspicious words and weight attached to them
     words = [
-        f"{word} (weight {weight:.2f})"
+        f"{word}"
         for word, weight in suspiciousWords
     ]
 
