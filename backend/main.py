@@ -1,13 +1,24 @@
 
 #imports
 import pandas as pd
+import os
+import sys
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.feature_selection import SequentialFeatureSelector
 
+#loads the dataset for the backend.exe pyinstaller file
+def get_resource_path(relative_path):
+    
+    #checks pyinstaller file is running
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 #loads the dataset
-dataset = pd.read_csv("../phishing_detector/datasets/dataset_export_full_11k.csv")
+dataset_path = get_resource_path("phishing_detector/datasets/dataset_export_full_11k.csv")
+dataset = pd.read_csv(dataset_path)
 
 #validation for dataset loading, will print a sample line
 print("Dataset loaded successfully; sample line:")
